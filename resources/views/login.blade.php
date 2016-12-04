@@ -17,7 +17,7 @@ Created: 03 Dec 2016
     <meta name="author" content="Murray Edmunds">
     <meta http-equiv="last-modified" content="2016-12-03" />
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="{{asset('icons/mwre-flavicon.png')}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{public_path('img\mwre-flavicon.png')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--[if lt IE 9]>
     <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -67,7 +67,7 @@ Created: 03 Dec 2016
             <label>Email: <input type="email" name="email" value={{ old('email') }}></label><br>
             <label>Password: <input type="password" name="password"></label><br>
             <button type="submit">Submit</button><br>
-            <a href="resetpassword/">Reset Password</a>
+            <!--<a href="resetpassword/">Reset Password</a>-->
         </form>
         <div id="loginErrors">
             @if ($errors->all() >0  && session('form') == 'loginError')
