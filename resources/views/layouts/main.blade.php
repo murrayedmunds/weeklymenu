@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Murray Edmunds">
     <meta http-equiv="last-modified" content="2016-12-03" />
+    <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/weeklymenu.js') }}"></script>
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="{{public_path('img\mwre-flavicon.png')}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/mwre-flavicon.png')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--[if lt IE 9]>
     <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -29,8 +31,9 @@
 <body>
 <hearder>
     <ul class="nav nav-pills">
-        <li><a href="/main/">Home</a></li>
-        <li><a href="/menus/">Menus</a></li>
+        <li><a href="home/">Home</a></li>
+        <li><a href="menus/">Menus</a></li>
+        <li><a href="logout/">Logout</a></li>
     </ul>
 </hearder>
 @yield('content')
