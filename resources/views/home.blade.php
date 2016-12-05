@@ -11,15 +11,16 @@ Created: 04 Dec 2016*/
             {{ csrf_field() }}
             Mains Board ID: <input type="number" name="mainInput" id="mainInput" value= "335096097213492205"/>
             Sides Board ID: <input type="number" name="sideInput" id="sideInput" value= "335096097213492206"/>
-            <button id="loadBtn" onclick="loadBoardArrays(); showLoading()">Load Boards</button>
         </form>
+            <button id="loadBtn" onclick="loadBoardArrays()">Load Boards</button>
+
         <hr>
         <form action="POST">
 
         </form>
         <a href="https://www.nutt.net/how-do-i-get-pinterest-board-id/" target="_blank">Click Here to Get Your Own Board ID's</a>
         <div class="loadingStatus">
-            <p id="loading">Boards loading</p>
+            <!--<p id="loading">Boards loading</p>-->
             <p id="loaded">Boards loaded </p>
         </div>
         <button id="weeklyMenuBtn" onclick="getMainMenu(mainsArray)" disabled="true">Get Random Weekly Menu</button>
