@@ -26,7 +26,30 @@ function loadBoardArrays() {
     });
 };
 
-function getMainPins(url) {
+function loadPins(url, dish) {
+    var xmlhttp = new XMLHttpRequest();
+
+    // set up our ajax request handler
+    xmlhttp.onreadystatechange = function() {
+        //check the state and status
+        if(xmlhttp.readyState==4 && xmlhttp.status==200) {
+            if (dish == 'main') {
+                mainsArray = mainsArray.concat(JSON.parse(xmlhttp.responseText).data);
+            } else if (dish == 'side') {
+                sidesArray = sidesArray.concat(JSON.parse(xmlhttp.responseText).data);
+            };
+            var responeTextPage = JSON.parse(xmlhttp.responseText).page.next;
+            console.log('Respone Page = '+responeTextPage);
+            if (responeTextPage != null) {
+                loadPins(responeTextPage, dish);
+            }
+        };
+    };
+    xmlhttp.open("GET",url,false);
+    xmlhttp.send();
+};
+
+/*function getMainPins(url) {
     var xmlhttp = new XMLHttpRequest();
 
     // set up our ajax request handler
@@ -62,7 +85,7 @@ function getSidePins(url) {
     };
     xmlhttp.open("GET",url,false);
     xmlhttp.send();
-};
+};*/
 
 function getMainMenu() {
     for (i=0; i <= 6; i++) {
