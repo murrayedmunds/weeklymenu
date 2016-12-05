@@ -125,10 +125,10 @@ function getMainMenu() {
 function getDayMenu(day, data, dish) {
     var num = rndNumber(data);
     if (data[num].metadata.link != null) {
-        document.getElementById(dish+day).innerHTML = "<h5>"+data[num].metadata.link.title+"</h5><p>"+data[num].metadata.link.description+"</p><a href='"+data[num].link+"' target='_blank'><img src='"+data[num].image.original.url+"'></a>";
+        document.getElementById(dish+'-'+day).innerHTML = "<h5>"+data[num].metadata.link.title+"</h5><p>"+data[num].metadata.link.description+"</p><a href='"+data[num].link+"' target='_blank'><img src='"+data[num].image.original.url+"'></a>";
         console.log(day+" Menu = "+data[num].metadata.link.title);
     } else {
-        document.getElementById(dish+day).innerHTML = "<p>"+data[num].note+"</p><a href='"+data[num].link+"' target='_blank'><img src='"+data[num].image.original.url+"'></a>";
+        document.getElementById(dish+'-'+day).innerHTML = "<p>"+data[num].note+"</p><a href='"+data[num].link+"' target='_blank'><img src='"+data[num].image.original.url+"'></a>";
         console.log(day+" Menu = "+data[num].note);
     };
 }
