@@ -17,8 +17,8 @@ class UsersController extends Controller
             'name' => 'required|regex:@^[\w\-\s]+$@',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|regex:@^.*(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).*$@',
-            'security_question' => 'required',
-            'security_answer' => 'required'
+            'question' => 'required',
+            'answer' => 'required'
         ], [
             'name.regex' => 'Name can only be Alphanumeric Characters!',
             'email.email' => 'Please Enter a valid email',
@@ -36,8 +36,8 @@ class UsersController extends Controller
             $users->name = $_POST['name'];
             $users->email = $_POST['email'];
             $users->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $users->security_question = $_POST('security_question');
-            $users->security_answer = password_hash($_POST('security_answer'), PASSWORD_DEFAULT);
+            $users->security_question = $_POST['question'];
+            $users->security_answer = password_hash($_POST['answer'], PASSWORD_DEFAULT);
             $users->save();
             return redirect('/');
         }
@@ -71,8 +71,7 @@ class UsersController extends Controller
                 'email' => $_POST['email'],
                 'name' => $userName
             ]);
-
-            return redirect('/main.php');
-        }
+            return redirect('home/');
+        };
     }
 }
