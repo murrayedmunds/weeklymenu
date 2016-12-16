@@ -42,12 +42,12 @@ Created: 03 Dec 2016
         <h2>Registration</h2>
         <form method="POST" action="saveuser/">
             {{ csrf_field() }}
-            <label>Name: <input type="text" name="name" size="34" value="{{ old('name') }}"></label><br>
-            <label>Email: <input type="text" name="email" size="34" value="{{ old('email') }}"></label><br>
-            <label>Password: <input type="password" name="password" size="30"></label><br>
-            <label>Confirm Password: <input type="password" name="password_confirmation" size="30"></label><br>
-            <label>Your Secret Question: <input type="text" name="question" value="{{ old('question') }}"></label><br>
-            <label>Your Secret Answer: <input type="text" name="answer"></label><br>
+            <label>Name: <input type="text" name="name" size="34" value="{{ old('name') }}" aria-required="true"></label><br>
+            <label>Email: <input type="text" name="email" size="34" value="{{ old('email') }}" aria-required="true"></label><br>
+            <label>Password: <input type="password" name="password" size="30" aria-required="true"></label><br>
+            <label>Confirm Password: <input type="password" name="password_confirmation" size="30" aria-required="true"></label><br>
+            <label>Your Secret Question: <input type="text" name="question" value="{{ old('question') }}" aria-required="true"></label><br>
+            <label>Your Secret Answer: <input type="text" name="answer" aria-required="true"></label><br>
             <div>
                 <p>Privacy Policy</p>
                 <ul>
@@ -75,8 +75,8 @@ Created: 03 Dec 2016
         <h2>Login</h2>
         <form method="POST" action="loginvalid/">
             {{ csrf_field() }}
-            <label>Email: <input type="email" name="email" value={{ old('email') }}></label><br>
-            <label>Password: <input type="password" name="password"></label><br>
+            <label>Email: <input type="email" name="email" value="{{ old('email') }}" aria-required="true"></label><br>
+            <label>Password: <input type="password" name="password" aria-required="true"></label><br>
             <button type="submit">Login</button><br>
             <!--<a href="resetpassword/">Reset Password</a>-->
         </form>
@@ -93,7 +93,8 @@ Created: 03 Dec 2016
     </div>
     <hr>
     <footer>
-        Copyright {{ date('Y') }} Murray Edmunds
+        <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
+        <p>&copy; {{ date('Y') }} Murray Edmunds</p>
     </footer>
 </body>
 

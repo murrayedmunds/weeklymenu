@@ -40,8 +40,8 @@ Created: 12 Dec 2016
         <h3>Reset Password</h3>
         <form method="post" action="/reset/update/">
             {{ csrf_field() }}
-            <label>New Password: <input type="password" name="password"></label><br>
-            <label>Confirm Password: <input type="password" name="password_confirmation" size="30"></label><br>
+            <label>New Password: <input type="password" name="password" aria-required="true"></label><br>
+            <label>Confirm Password: <input type="password" name="password_confirmation" size="30" aria-required="true"></label><br>
             <button type="submit">Create New Password</button>
         </form>
     </div>
@@ -56,6 +56,7 @@ Created: 12 Dec 2016
     </div>
     <hr>
     <footer>
-        Copyright {{ date('Y') }} Murray Edmunds
+        <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
+        <p>&copy; {{ date('Y') }} Murray Edmunds</p>
     </footer>
 </body>

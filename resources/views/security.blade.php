@@ -40,7 +40,7 @@ Created: 12 Dec 2016
         <h3>Who Are You?</h3>
         <form method="post" action="/security/email-check/">
             {{ csrf_field() }}
-            <label>Your Email: <input type="text" name="email"></label><br>
+            <label>Your Email: <input type="text" name="email" aria-required="true"></label><br>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -55,6 +55,7 @@ Created: 12 Dec 2016
     </div>
     <hr>
     <footer>
-        Copyright {{ date('Y') }} Murray Edmunds
+        <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
+        <p>&copy; {{ date('Y') }} Murray Edmunds</p>
     </footer>
 </body>

@@ -41,7 +41,7 @@ Created: 12 Dec 2016
         <p>Question: {{ session('question') }}</p>
         <form method="post" action="/security/test-check/">
             {{ csrf_field() }}
-            <label>Answer: <input type="text" name="answer"></label><br>
+            <label>Answer: <input type="text" name="answer" aria-required="true"></label><br>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -56,6 +56,7 @@ Created: 12 Dec 2016
     </div>
     <hr>
     <footer>
-        Copyright {{ date('Y') }} Murray Edmunds
+        <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
+        <p>&copy; {{ date('Y') }} Murray Edmunds</p>
     </footer>
 </body>
