@@ -47,6 +47,57 @@ class UsersController extends Controller
         }
     }
 
+    public function updateUser()
+    {
+        $validator = \Validator::make($_POST, [
+            'name' => 'regex:@^[\w\-\s]+$@',
+            'email' => 'email|unique:users,email',
+            'password' => 'confirmed|min:8|regex:@^.*(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).*$@'
+        ], [
+            'name.regex' => 'Name can only be Alphanumeric Characters!',
+            'email.email' => 'Please Enter a valid email',
+            'email.unique' => 'That email is already taken, please try another.',
+            'password.min' => 'Your password must be at least 8 characters long.',
+            'password.regex' => 'Your password is not complex enough.',
+            'password.confirmed' => "Your passwords don't match",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/settings/')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $users = \App\Users::whereEmail(session('email'))->first();
+            if (!empty($_POST['name'])) {
+                $users->name = $_POST['name'];
+            }
+            if (!empty($_POST['email'])) {
+                $users->email = $_POST['email'];
+            }
+            if (!empty($_POST['password'])) {
+                $users->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            }
+            if (!empty($_POST['question'])) {
+                $users->security_question = $_POST['question'];
+            }
+            if (!empty($_POST['answer'])) {
+                $users->security_answer = password_hash($_POST['answer'], PASSWORD_DEFAULT);
+            }
+            $users->save();
+
+            //save updated data to session
+            $user = \App\Users::whereEmail(session('email'))->first();
+            $userName = $user['name'];
+            $userEmail = $user['email'];
+            session([
+                'email' => $userEmail,
+                'name' => $userName
+            ]);
+
+            return redirect('/settings/');
+        }
+    }
+
     public function loginValid()
     {
         $validator = \Validator::make($_POST, [
