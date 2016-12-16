@@ -4,6 +4,10 @@ Created: 04 Dec 2016*/
 ?>
 @extends('layouts.main')
 
+@section('javascript')
+    <script type="text/javascript" src="{{ URL::asset('js/weeklymenu.js') }}"></script>
+@endsection
+
 @section('content')
     <h1>Welcome {{ session('name') }}</h1>
     <main id="main" role ="main">

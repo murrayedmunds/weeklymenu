@@ -9,7 +9,7 @@
     <meta name="author" content="Murray Edmunds">
     <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/js.storage.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/weeklymenu.js') }}"></script>
+    @yield('javascript')
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/mwre-flavicon.png')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -30,17 +30,17 @@
 <body>
 <hearder>
     <ul class="nav nav-pills">
-        <li><a href="home/">Home</a></li>
-        <li><a href="menus/">Menus</a></li>
-        <li><a href="menus/">Settings</a></li>
-        <li><a href="logout/">Logout</a></li>
+        <li><a href="/home/">Home</a></li>
+        <li><a href="/menus/">Menus</a></li>
+        <li><a href="/settings/">Settings</a></li>
+        <li><a href="/logout/">Logout</a></li>
     </ul>
-    <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
 </hearder>
 @yield('content')
 <hr>
 <footer>
-    Copyright {{ date('Y') }} Murray Edmunds
+    <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
+    <p>&copy; {{ date('Y') }} Murray Edmunds</p>
 </footer>
 </body>
 </html>
