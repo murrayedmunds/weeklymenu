@@ -35,7 +35,7 @@ Created: 03 Dec 2016
 <body>
     <div>
         <h1>Weekly Menu by Murray Edmunds</h1>
-        <p>description of app</p>
+        <p>Weekly Menu will let you save your Pinterest boards and create random weekly menu's from them.</p>
     </div>
     <hr>
     <div id="registration">
@@ -80,6 +80,7 @@ Created: 03 Dec 2016
             <button type="submit">Login</button><br>
             <!--<a href="resetpassword/">Reset Password</a>-->
         </form>
+        <a href="/security/">Forgot password?</a>
         <div id="loginErrors">
             @if ($errors->all() >0  && session('form') == 'loginError')
             <ul class="errors list-unstyled">
