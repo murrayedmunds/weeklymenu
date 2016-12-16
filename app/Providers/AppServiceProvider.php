@@ -27,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
             $userPassword = $user['password'];
             return password_verify($_POST['password'], $userPassword);
         });
+
+        \Validator::extend('answer_correct', function ($attribute, $value, $parameters, $validator) {
+            $user = \App\Users::whereEmail(session('email'))->first();
+            $userAnswer = $user['security_answer'];
+            return password_verify($_POST['answer'], $userAnswer);
+        });
     }
 
     /**
