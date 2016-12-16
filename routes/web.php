@@ -15,6 +15,15 @@ Route::get('/', 'UsersController@landing');
 Route::post('/saveuser/', 'UsersController@saveUser');
 Route::post('/loginvalid/', 'UsersController@loginValid');
 
+Route::get('/security/', 'UsersController@enterEmail');
+Route::post('/security/email-check/', 'UsersController@checkEmail');
+
+Route::get('/security/test/', 'UsersController@securityTest');
+Route::post('/security/test-check', 'UsersController@securityCheck');
+
+Route::get('/reset/', 'UsersController@resetPassword');
+Route::post('/reset/update/', 'UsersController@passwordUpdate');
+
 Route::get('/home', 'BoardsController@loadMain');
 Route::post('/home/saveboards/', 'BoardsController@saveBoard');
 Route::get('/home/savemenu', 'BoardsController@saveMenu');
