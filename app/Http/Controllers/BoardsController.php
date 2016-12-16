@@ -18,6 +18,17 @@ class BoardsController extends Controller
         }
     }
 
+    public function loadSettings()
+    {
+        if (session('isLoggedIn') == false) {
+            return redirect('/');
+        } else {
+            return view('settings', [
+                'boards' => \App\Boards::whereUserId(session('user_id'))->get()
+            ]);
+        }
+    }
+
     public function saveBoard()
     {
         $validator = \Validator::make($_POST, [
@@ -44,35 +55,12 @@ class BoardsController extends Controller
         }
     }
 
-    /**
-     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function saveMenu()
+    public function deleteBoard()
     {
-        $validator = \Validator::make($_POST, [
-            'menuName' => 'required',
-        ], [
-            'menuName.required' => 'Please enter a name for the menu.',
-        ]);
+        /*$boards = \App\Boards::whereBoardId($_POST('board_id'))->get()
+        $boards->delete();
 
-        if ($validator->fails()) {
-            return redirect('/home/')
-                ->with('form', 'menuError')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $menus = new \App\Menus;
-            $menus->user_id = session('user_id');
-            $menus->name = $_POST['menuName'];
-            $menus->mainMondayUrl = $_POST['mainMondayUrl'];
-            /*$menus->mainMondayMetadataLinkTitle = $_SESSION('mainMondayMetadataLinkTitle');
-            $menus->mainMondayMetadataLinkDescription = $_SESSION('mainMondayMetadataLinkDescription');
-            $menus->mainMondayNote = $_SESSION('mainMondayNote');
-            $menus->mainMondayImageUrl = $_SESSION('mainMondayImageUrl');*/
-            $menus->save();
-
-            /*return redirect('/home/');*/
-        }
+        return redirect('/settings/')*/
     }
 
     public function logout(Request $request)
