@@ -28,4 +28,10 @@ Route::get('/home', 'BoardsController@loadMain');
 Route::post('/home/saveboards/', 'BoardsController@saveBoard');
 Route::get('/home/savemenu', 'BoardsController@saveMenu');
 
+Route::get('/menus/', 'MenusController@loadMenus');
+
+Route::get('/settings/', 'BoardsController@loadSettings');
+Route::post('/settings/update/', 'UsersController@updateUser');
+Route::post('/settings/delete-board', 'BoardsController@deleteBoard');
+
 Route::get('/logout', 'BoardsController@logout');
