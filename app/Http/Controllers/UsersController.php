@@ -77,4 +77,100 @@ class UsersController extends Controller
             return redirect('home/');
         };
     }
+
+    public function enterEmail()
+    {
+        return view('security');
+    }
+
+    public function checkEmail()
+    {
+        $validator = \Validator::make($_POST, [
+            'email' => 'required|email_exists',
+        ], [
+            'email.required' => 'Please Enter a Email.',
+            'email_exists' => 'Email entered does not exists. Please Register.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/security/')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $user = \App\Users::whereEmail($_POST['email'])->first();
+            $userQuestion = $user['security_question'];
+            session([
+                'emailExists' => true,
+                'email' => $_POST['email'],
+                'question' => $userQuestion
+            ]);
+            return redirect('/security/test/');
+        };
+    }
+
+    public function securityTest()
+    {
+        if (session('emailExists') == false) {
+            return redirect('/security/');
+        } else {
+            return view('securityTest');
+        }
+    }
+
+    public function securityCheck()
+    {
+        $validator = \Validator::make($_POST, [
+            'answer' => 'required|answer_correct',
+        ], [
+            'answer.required' => 'Please Enter a Answer.',
+            'answer_correct' => 'Sorry but that is not the right answer.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/security/test/')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            session([
+                'securityPassed' => true,
+            ]);
+            return redirect('/reset/');
+        };
+    }
+
+    public function resetPassword()
+    {
+        if (session('securityPassed') == false) {
+            return redirect('/security/test/');
+        } else {
+            return view('reset');
+        }
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $validator = \Validator::make($_POST, [
+            'password' => 'required|confirmed|min:8|regex:@^.*(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).*$@',
+        ], [
+            'password.min' => 'Your password must be at least 8 characters long.',
+            'password.regex' => 'Your password is not complex enough.',
+            'password.confirmed' => "Your passwords don't match"
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/reset/')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            // save new user password
+            $users = \App\Users::whereEmail(session('email'))->first();
+            $users->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $users->save();
+
+            //destory session data
+            $request->session()->flush();
+
+            return redirect('/');
+        };
+    }
 }
