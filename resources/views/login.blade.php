@@ -10,12 +10,10 @@ Created: 03 Dec 2016
 <head>
     <title>Murray Edmunds Weekly Menu</title>
     <meta name="description" content="Weekly Menu by Murray Edmunds">
-    <meta property="og:description" content="Weekly Menu by Murray Edmunds">
-    <meta name="twitter:Weekly Menu by Murray Edmunds">
+    <meta  name="twitter:title" content="twitter:Weekly Menu by Murray Edmunds">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Murray Edmunds">
-    <meta http-equiv="last-modified" content="2016-12-03" />
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/mwre-flavicon.png')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -39,6 +37,7 @@ Created: 03 Dec 2016
         <h1>Weekly Menu by Murray Edmunds</h1>
         <p>description of app</p>
     </div>
+    <hr>
     <div id="registration">
         <h2>Registration</h2>
         <form method="POST" action="saveuser/">
@@ -46,9 +45,21 @@ Created: 03 Dec 2016
             <label>Name: <input type="text" name="name" size="34" value="{{ old('name') }}"></label><br>
             <label>Email: <input type="text" name="email" size="34" value="{{ old('email') }}"></label><br>
             <label>Password: <input type="password" name="password" size="30"></label><br>
+            <label>Confirm Password: <input type="password" name="password_confirmation" size="30"></label><br>
             <label>Your Secret Question: <input type="text" name="question" value="{{ old('question') }}"></label><br>
             <label>Your Secret Answer: <input type="text" name="answer"></label><br>
-            <button type="submit">Submit</button>
+            <div>
+                <p>Privacy Policy</p>
+                <ul>
+                    <li>Personal information will only be used for the purpose for which it was collected.</li>
+                    <li>I will not share any collected information with third parties.</li>
+                    <li>I will not use your saved email to send you any emails.  Collected email address is for login purposes only.</li>
+                    <li>Passwords are saved in encrypted format.</li>
+                    <li>You verify that you are older than 18 years old.</li>
+                </ul>
+            </div>
+            <label><input type="checkbox" id="privacy" name="privacy" value="first_checkbox">I have read and agree with privacy policy.</label><br>
+            <button type="submit">Register</button>
         </form>
         <div id="regErrors">
             @if ($errors->all() >0 && session('form') == 'regError')
@@ -66,7 +77,7 @@ Created: 03 Dec 2016
             {{ csrf_field() }}
             <label>Email: <input type="email" name="email" value={{ old('email') }}></label><br>
             <label>Password: <input type="password" name="password"></label><br>
-            <button type="submit">Submit</button><br>
+            <button type="submit">Login</button><br>
             <!--<a href="resetpassword/">Reset Password</a>-->
         </form>
         <div id="loginErrors">
@@ -79,6 +90,10 @@ Created: 03 Dec 2016
             @endif
         </div>
     </div>
+    <hr>
+    <footer>
+        Copyright {{ date('Y') }} Murray Edmunds
+    </footer>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ class CreateBoardsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
-            $table->integer('board_id');
+            $table->bigInteger('board_id');
             $table->timestamps();
         });
     }

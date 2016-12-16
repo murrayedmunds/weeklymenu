@@ -3,13 +3,12 @@
 <head>
     <title>Murray Edmunds Weekly Menu</title>
     <meta name="description" content="Weekly Menu by Murray Edmunds">
-    <meta property="og:description" content="Weekly Menu by Murray Edmunds">
-    <meta name="twitter:Weekly Menu by Murray Edmunds">
+    <meta  name="twitter:title" content="twitter:Weekly Menu by Murray Edmunds">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Murray Edmunds">
-    <meta http-equiv="last-modified" content="2016-12-03" />
     <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/js.storage.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/weeklymenu.js') }}"></script>
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/mwre-flavicon.png')}}"/>
@@ -33,11 +32,13 @@
     <ul class="nav nav-pills">
         <li><a href="home/">Home</a></li>
         <li><a href="menus/">Menus</a></li>
+        <li><a href="menus/">Settings</a></li>
         <li><a href="logout/">Logout</a></li>
     </ul>
+    <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
 </hearder>
 @yield('content')
-
+<hr>
 <footer>
     Copyright {{ date('Y') }} Murray Edmunds
 </footer>

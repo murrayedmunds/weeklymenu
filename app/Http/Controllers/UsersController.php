@@ -16,14 +16,18 @@ class UsersController extends Controller
         $validator = \Validator::make($_POST, [
             'name' => 'required|regex:@^[\w\-\s]+$@',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|regex:@^.*(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).*$@',
+            'password' => 'required|confirmed|min:8|regex:@^.*(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).*$@',
             'question' => 'required',
-            'answer' => 'required'
+            'answer' => 'required',
+            'privacy' => 'required'
         ], [
             'name.regex' => 'Name can only be Alphanumeric Characters!',
             'email.email' => 'Please Enter a valid email',
             'email.unique' => 'That email is already taken, please try another.',
-            'password.regex' => 'Your password is not complex enough.'
+            'password.min' => 'Your password must be at least 8 characters long.',
+            'password.regex' => 'Your password is not complex enough.',
+            'password.confirmed' => "Your passwords don't match",
+            'privacy.required' => 'You must check that you have read and agree to privacy policy.'
         ]);
 
         if ($validator->fails()) {
@@ -64,7 +68,6 @@ class UsersController extends Controller
             $user = \App\Users::whereEmail($_POST['email'])->first();
             $userId = $user['id'];
             $userName = $user['name'];
-
             session([
                 'isLoggedIn' => true,
                 'user_id' => $userId,
