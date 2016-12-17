@@ -28,7 +28,7 @@ Created: 04 Dec 2016*/
                     <p>Side dishes board ID: 335096097213492206</p>
                 </div>
             @endif
-            <form method="POST" action="home/saveboards/">
+            <form method="POST" action="/home/saveboards/">
                 {{ csrf_field() }}
                 <label>Board Name: <input type="text" name="boardName" id="boardName"></label>
                 <label>Board ID: <input type="number" name="boardId" id="BoardId"/></label>
