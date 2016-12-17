@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
+
 
 class BoardsController extends Controller
 {
@@ -57,10 +59,9 @@ class BoardsController extends Controller
 
     public function deleteBoard()
     {
-        /*$boards = \App\Boards::whereBoardId($_POST('board_id'))->get()
-        $boards->delete();
+        $deleted_board = \App\Boards::whereId($_GET['id'])->delete();
 
-        return redirect('/settings/')*/
+        return redirect('/settings/');
     }
 
     public function logout(Request $request)
