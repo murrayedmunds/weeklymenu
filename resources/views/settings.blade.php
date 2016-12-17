@@ -49,7 +49,7 @@ Created: 04 Dec 2016*/
                         <tr>
                             <td> {{ $board->name }} </td>
                             <td> {{ $board->board_id }} </td>
-                            <td><a href="#">Delete</a></td>
+                            <td><a href="/settings/delete-board.php?id={{ $board->id }}">Delete</a></td>
                         </tr>
                     @endforeach
                 </tbody>
