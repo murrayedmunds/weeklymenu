@@ -32,6 +32,6 @@ Route::get('/menus/', 'MenusController@loadMenus');
 
 Route::get('/settings/', 'BoardsController@loadSettings');
 Route::post('/settings/update/', 'UsersController@updateUser');
-Route::post('/settings/delete-board', 'BoardsController@deleteBoard');
+Route::get('/settings/delete-board.php', 'BoardsController@deleteBoard');
 
 Route::get('/logout', 'BoardsController@logout');
