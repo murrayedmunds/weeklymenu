@@ -26,7 +26,7 @@ Route::post('/reset/update/', 'UsersController@passwordUpdate');
 
 Route::get('/home', 'BoardsController@loadMain');
 Route::post('/home/saveboards/', 'BoardsController@saveBoard');
-Route::get('/home/savemenu', 'BoardsController@saveMenu');
+Route::post('/home/savemenu/', 'MenusController@saveMenu');
 
 Route::get('/menus/', 'MenusController@loadMenus');
 
