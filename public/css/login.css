@@ -1,0 +1,60 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  color: #060e9f;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100vh;
+  line-height: 1.4em;
+  padding: 0 1em;
+}
+
+body a {
+  color: #060e9f;
+}
+
+#main {
+  -webkit-box-flex: 1;
+  flex: 1 0 auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+#footer {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+#main {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+  align-content: flex-start;
+}
+
+#main div {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+.siteName {
+  text-align: center;
+  width: 100%;
+}
+
+/*# sourceMappingURL=login.css.map */

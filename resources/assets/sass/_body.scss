@@ -1,0 +1,35 @@
+// Variables
+@import "variables";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+body{
+  font-family: 'Cormorant Garamond', serif;
+  color: #060e9f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+  height: 100vh;
+    line-height: 1.4em;
+  padding: 0 1em;
+  a{
+    color: #060e9f;
+  }
+}
+#main {
+    -webkit-box-flex: 1;-ms-flex: 1 0 auto;flex: 1 0 auto;
+}
+img {
+    max-width: 100%;
+}
+
+#footer {
+   text-align: center;
+   -ms-flex-negative: 0;flex-shrink: 0;
+}

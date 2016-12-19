@@ -1,0 +1,38 @@
+// Variables
+@import "variables";
+
+// Common Body
+@import "body";
+
+#main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+            align-items: baseline;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+    .boardSave  {
+        //-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;
+    }
+    .load  {
+        //-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;
+    }
+    .menusave  {
+        //-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;
+        display: none;
+    }
+    .menu {
+        display: none;
+        width: 100%;
+    }
+}
