@@ -15,7 +15,10 @@ class BoardsController extends Controller
             return redirect('/');
         } else {
             return view('home', [
-                'boards' => \App\Boards::whereUserId(session('user_id'))->get()
+                'boards' => \App\Boards::whereUserId(session('user_id'))->get(),
+                'dishs' => ['main', 'side'],
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                'datas' => ['Url', 'MetadataLinkTitle', 'MetadataLinkDescription', 'Note', 'ImageUrl'],
             ]);
         }
     }
