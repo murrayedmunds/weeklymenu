@@ -17,3 +17,23 @@ elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js');
 });
+
+elixir(mix => {
+    mix.sass('login.scss')
+       .webpack('app.js');
+});
+
+elixir(mix => {
+    mix.sass('home.scss')
+       .webpack('app.js');
+});
+
+elixir(mix => {
+    mix.sass('menu.scss')
+       .webpack('app.js');
+});
+
+elixir(mix => {
+    mix.sass('settings.scss')
+       .webpack('app.js');
+});
