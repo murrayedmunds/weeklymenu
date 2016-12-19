@@ -32,16 +32,21 @@ class MenusController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
+            $dishs = ['main', 'side'];
+            $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            $datas = ['Url', 'MetadataLinkTitle', 'MetadataLinkDescription', 'Note', 'ImageUrl'];
             $menus = new \App\Menus;
             $menus->user_id = session('user_id');
             $menus->name = $_POST['menuName'];
-            $menus->mainMondayUrl = $_POST['mainMondayUrl'];
-            $menus->mainMondayMetadataLinkTitle = $_POST('mainMondayMetadataLinkTitle');
-            $menus->mainMondayMetadataLinkDescription = $_SESSION('mainMondayMetadataLinkDescription');
-            $menus->mainMondayNote = $_SESSION('mainMondayNote');
-            $menus->mainMondayImageUrl = $_SESSION('mainMondayImageUrl');
+            foreach ($dishs as $dish) {
+                foreach ($days as $day) {
+                    foreach ($datas as $data) {
+                        $enter = $dish.$day.$data;
+                        $menus->$enter = $_POST[$dish.$day.$data];
+                    }
+                }
+            }
             $menus->save();
-
             return redirect('/menus/');
         }
     }
