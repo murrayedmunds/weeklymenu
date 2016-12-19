@@ -62,21 +62,27 @@ Created: 04 Dec 2016*/
                             <option name="sideInput" value="{{ $board->board_id }}">{{ $board->name }}</option>
                         @endforeach
                     </select></label>
+                <button id="loadBtn" onclick="loadBoardArrays()">Load Boards</button>
             </form>
-            <button id="loadBtn" onclick="loadBoardArrays()">Load Boards</button>
 
             <div class="loadingStatus">
-                <!--<p id="loading">Boards loading</p>-->
                 <p id="loaded" style="display: none;">Boards loaded </p>
             </div>
         </div>
         <hr>
         <div class="menusave">
             <h3>Save Menu</h3>
-            <form method="GET">
+            <form method="post" action="/home/savemenu/">
                 {{ csrf_field() }}
                 <label>Menu Name: <input type="text" name="menuName" id="menuName"></label>
-                <button id="saveBtn" onclick="saveMenu()">Save Menu</button>
+                @foreach ($dishs as $dish)
+                    @foreach ($days as $day)
+                        @foreach ($datas as $data)
+                            <input type="hidden" name="{{ $dish.$day.$data }}" id="{{ $dish.$day.$data }}">
+                        @endforeach
+                    @endforeach
+                @endforeach
+                <button id="saveMenuBtn">Save Menu</button>
             </form>
             <div id="regErrors">
                 @if ($errors->all() >0 && session('form') == 'menuError')
