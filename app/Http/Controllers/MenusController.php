@@ -27,6 +27,7 @@ class MenusController extends Controller
         ]);
 
         if ($validator->fails()) {
+            //return response('{"result":0}', 200);
             return redirect('/home/')
                 ->with('form', 'menuError')
                 ->withErrors($validator)
@@ -47,6 +48,7 @@ class MenusController extends Controller
                 }
             }
             $menus->save();
+            //return response('{"result":1}', 200);
             return redirect('/menus/');
         }
     }

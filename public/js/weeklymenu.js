@@ -4,6 +4,7 @@ var sidesArray = [];
 function loadBoardArrays() {
     $(function() {
         event.preventDefault();
+        $('.menu').css('display', 'initial');
         mainsArray = [];
         sidesArray = [];
         var mainUrl = "https://api.pinterest.com/v1/boards/"+$("#mainInput").val()+
@@ -89,6 +90,7 @@ function getMainMenu() {
 };
 
 function getDayMenu(day, data, dish) {
+    $('.menusave').css('display', 'initial');
     var num = rndNumber(data);
     console.log(day + ' ' + dish + 'number = ' + num);
     $('#'+dish+day+'Url').val(data[num].url);
@@ -96,6 +98,10 @@ function getDayMenu(day, data, dish) {
     $('#'+dish+day+'MetadataLinkDescription').val(null);
     $('#'+dish+day+'Note').val(data[num].note);
     $('#'+dish+day+'ImageUrl').val(data[num].image.original.url);
+    /*storage = Storages.sessionStorage;
+    storage.set(dish+day+'Url', data[num].url);
+    storage.set(dish+day+'Note', data[num].note);
+    storage.set(dish+day+'ImageUrl', data[num].image.original.url);*/
     document.getElementById(dish+day).innerHTML = "<p>"+data[num].note+"</p><a href='"+data[num].url+"' target='_blank'><img src='"+data[num].image.original.url+"'></a>";
     console.log(day+" Menu = "+data[num].note);
     /*if (data[num].metadata.link !== undefined) {
@@ -122,97 +128,39 @@ function saveMenu() {
     $(function () {
         event.preventDefault();
         var formData = new FormData();
-        formData.append('test', 'test');
-        formData.append('mainMondayUrl', 'test')
+        //formData.append('test', 'test');
+        //formData.append('mainMondayUrl', 'test')
         formData.append('name', $('#menuName').val());
-        //not sure why foreach loop not working
-        /*var dishs = ['main', 'side'];
-         var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-         var datas = ['Url', 'MetadataLinkTitle', 'MetadataLinkDescription', 'Note'];
-         $.each(dishs, function(i, dish){
-         $.each(days, function(x, day){
-         $.each(datas, function(y, data) {
-         formData.append(dish+day+data, Storages.sessionStorage.get(dish+day+data));
-         });
-         });
-         });*/
-        /*formData.append('mainMondayUrl', Storages.sessionStorage.get('mainMondayUrl'));
-         formData.append('mainMondayMetadataLinkTitle', Storages.sessionStorage.get('mainMondayMetadataLinkTitle'));
-         formData.append('mainMondayMetadataLinkDescription', Storages.sessionStorage.get('mainMondayMetadataLinkDescription'));
-         formData.append('mainMondayNote', Storages.sessionStorage.get('mainMondayNote'));
-         formData.append('mainTuesdayUrl', Storages.sessionStorage.get('mainTuesdayUrl'));
-         formData.append('mainTuesdayMetadataLinkTitle', Storages.sessionStorage.get('mainTuesdayMetadataLinkTitle'));
-         formData.append('mainTuesdayMetadataLinkDescription', Storages.sessionStorage.get('mainTuesdayMetadataLinkDescription'));
-         formData.append('mainTuesdayNote', Storages.sessionStorage.get('mainTuesdayNote'));
-         formData.append('mainWednesdayUrl', Storages.sessionStorage.get('mainWednesdayUrl'));
-         formData.append('mainWednesdayMetadataLinkTitle', Storages.sessionStorage.get('mainWednesdayMetadataLinkTitle'));
-         formData.append('mainWednesdayMetadataLinkDescription', Storages.sessionStorage.get('mainWednesdayMetadataLinkDescription'));
-         formData.append('mainWednesdayNote', Storages.sessionStorage.get('mainWednesdayNote'));
-         formData.append('mainThursdayUrl', Storages.sessionStorage.get('mainThursdayUrl'));
-         formData.append('mainThursdayMetadataLinkTitle', Storages.sessionStorage.get('mainThursdayMetadataLinkTitle'));
-         formData.append('mainThursdayMetadataLinkDescription', Storages.sessionStorage.get('mainThursdayMetadataLinkDescription'));
-         formData.append('mainThursdayNote', Storages.sessionStorage.get('mainThursdayNote'));
-         formData.append('mainFridayUrl', Storages.sessionStorage.get('mainFridayUrl'));
-         formData.append('mainFridayMetadataLinkTitle', Storages.sessionStorage.get('mainFridayMetadataLinkTitle'));
-         formData.append('mainFridayMetadataLinkDescription', Storages.sessionStorage.get('mainFridayMetadataLinkDescription'));
-         formData.append('mainFridayNote', Storages.sessionStorage.get('mainFridayNote'));
-         formData.append('mainSaturdayUrl', Storages.sessionStorage.get('mainSaturdayUrl'));
-         formData.append('mainSaturdayMetadataLinkTitle', Storages.sessionStorage.get('mainSaturdayMetadataLinkTitle'));
-         formData.append('mainSaturdayMetadataLinkDescription', Storages.sessionStorage.get('mainSaturdayMetadataLinkDescription'));
-         formData.append('mainSaturdayNote', Storages.sessionStorage.get('mainSaturdayNote'));
-         formData.append('mainSundayUrl', Storages.sessionStorage.get('mainSundayUrl'));
-         formData.append('mainSundayMetadataLinkTitle', Storages.sessionStorage.get('mainSundayMetadataLinkTitle'));
-         formData.append('mainSundayMetadataLinkDescription', Storages.sessionStorage.get('mainSundayMetadataLinkDescription'));
-         formData.append('mainSundayNote', Storages.sessionStorage.get('mainSundayNote'));
-         formData.append('sideMondayUrl', Storages.sessionStorage.get('sideMondayUrl'));
-         formData.append('sideMondayMetadataLinkTitle', Storages.sessionStorage.get('sideMondayMetadataLinkTitle'));
-         formData.append('sideMondayMetadataLinkDescription', Storages.sessionStorage.get('sideMondayMetadataLinkDescription'));
-         formData.append('sideMondayNote', Storages.sessionStorage.get('sideMondayNote'));
-         formData.append('sideTuesdayUrl', Storages.sessionStorage.get('sideTuesdayUrl'));
-         formData.append('sideTuesdayMetadataLinkTitle', Storages.sessionStorage.get('sideTuesdayMetadataLinkTitle'));
-         formData.append('sideTuesdayMetadataLinkDescription', Storages.sessionStorage.get('sideTuesdayMetadataLinkDescription'));
-         formData.append('sideTuesdayNote', Storages.sessionStorage.get('sideTuesdayNote'));
-         formData.append('sideWednesdayUrl', Storages.sessionStorage.get('sideWednesdayUrl'));
-         formData.append('sideWednesdayMetadataLinkTitle', Storages.sessionStorage.get('sideWednesdayMetadataLinkTitle'));
-         formData.append('sideWednesdayMetadataLinkDescription', Storages.sessionStorage.get('sideWednesdayMetadataLinkDescription'));
-         formData.append('sideWednesdayNote', Storages.sessionStorage.get('sideWednesdayNote'));
-         formData.append('sideThursdayUrl', Storages.sessionStorage.get('sideThursdayUrl'));
-         formData.append('sideThursdayMetadataLinkTitle', Storages.sessionStorage.get('sideThursdayMetadataLinkTitle'));
-         formData.append('sideThursdayMetadataLinkDescription', Storages.sessionStorage.get('sideThursdayMetadataLinkDescription'));
-         formData.append('sideThursdayNote', Storages.sessionStorage.get('sideThursdayNote'));
-         formData.append('sideFridayUrl', Storages.sessionStorage.get('sideFridayUrl'));
-         formData.append('sideFridayMetadataLinkTitle', Storages.sessionStorage.get('sideFridayMetadataLinkTitle'));
-         formData.append('sideFridayMetadataLinkDescription', Storages.sessionStorage.get('sideFridayMetadataLinkDescription'));
-         formData.append('sideFridayNote', Storages.sessionStorage.get('sideFridayNote'));
-         formData.append('sideSaturdayUrl', Storages.sessionStorage.get('sideSaturdayUrl'));
-         formData.append('sideSaturdayMetadataLinkTitle', Storages.sessionStorage.get('sideSaturdayMetadataLinkTitle'));
-         formData.append('sideSaturdayMetadataLinkDescription', Storages.sessionStorage.get('sideSaturdayMetadataLinkDescription'));
-         formData.append('sideSaturdayNote', Storages.sessionStorage.get('sideSaturdayNote'));
-         formData.append('sideSundayUrl', Storages.sessionStorage.get('sideSundayUrl'));
-         formData.append('sideSundayMetadataLinkTitle', Storages.sessionStorage.get('sideSundayMetadataLinkTitle'));
-         formData.append('sideSundayMetadataLinkDescription', Storages.sessionStorage.get('sideSundayMetadataLinkDescription'));
-         formData.append('sideSundayNote', Storages.sessionStorage.get('sideSundayNote'));
-         */
+        var dishs = ['main', 'side'];
+        var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        var datas = ['Url', 'Note', 'ImageUrl'];
+        $.each(dishs, function(i, dish){
+            $.each(days, function(x, day){
+                $.each(datas, function(y, data) {
+                formData.append(dish+day+data, Storages.sessionStorage.get(dish+day+data));
+                });
+            });
+        });
         Storages.sessionStorage.removeAll();
-        /*$.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
         $.ajax({
-            //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url: '/home/savemenu/',
-            data: formData,
+            data: formData.serialize(),
             method: 'post',
             dataType: "json",
             cache : false,
             processData: false,
             success: function(){
-                alert('win');
-                //$(location).attr('href','/home/savemenu/');
+                //alert('win');
+                $(location).attr('href','/menus/');
             },
             error: function() {
                 alert('error');
             }
-        });*/
-        $.get('/home/savemenu', formData);
+        });
     });
 };

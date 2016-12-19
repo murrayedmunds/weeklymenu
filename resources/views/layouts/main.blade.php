@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Murray Edmunds">
+    @yield('css')
     <link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}">
     <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/js.storage.min.js') }}"></script>
@@ -15,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,400i,700" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('img/mwre-flavicon.png')}}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--[if lt IE 9]>
     <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
     <![endif]-->
@@ -40,7 +42,7 @@
 </hearder>
 @yield('content')
 <hr>
-<footer>
+<footer id="footer">
     <p><a href="http://www.murrayedmunds.ca">Back to www.murrayedmunds.ca</a></p>
     <p>&copy; {{ date('Y') }} Murray Edmunds</p>
 </footer>

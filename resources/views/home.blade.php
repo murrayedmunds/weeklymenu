@@ -4,6 +4,10 @@ Created: 04 Dec 2016*/
 ?>
 @extends('layouts.main')
 
+@section('css')
+    <link rel="stylesheet" href="{{ URL::asset('css/home.css') }}">
+@endsection
+
 @section('javascript')
     <script type="text/javascript" src="{{ URL::asset('js/weeklymenu.js') }}"></script>
 @endsection
